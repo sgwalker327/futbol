@@ -235,13 +235,13 @@ RSpec.describe StatTracker do
 
   describe '#most_accurate_teams' do 
     it 'is the team that is the most accurate' do 
-      expect(@stat_tracker.most_accurate_team("20122013")).to eq("")
+      expect(@stat_tracker.most_accurate_team("20122013")).to eq("FC Dallas")
     end
   end
 
   describe '#least_accurate_teams' do
     it 'is the team that is the least accurate' do
-      expect(@stat_tracker.most_accurate_team("20122013")).to eq("")
+      expect(@stat_tracker.most_accurate_team("20122013")).to eq("FC Dallas")
     end
   end
 
@@ -257,4 +257,12 @@ RSpec.describe StatTracker do
     end
   end
 
+  describe '#team_info' do
+    it 'returns a hash of the team info attributes' do
+      expected = {"team_id"=>"6", "franchise_id"=>"6",
+                  "team_name"=>"FC Dallas", "abbreviation"=>"DAL",
+                   "link"=>"/api/v1/teams/6"}
+      expect(@stat_tracker.team_info('6')).to eq(expected)
+    end
+  end
 end
