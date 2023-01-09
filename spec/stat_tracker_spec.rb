@@ -38,6 +38,7 @@ RSpec.describe StatTracker do
   describe '#all_scores' do 
     it 'is a helper method for highest and lowest total score methods' do 
       expect(@stat_tracker.all_scores.class).to eq(Array)
+      expect(@stat_tracker.all_scores.count).to eq(30)
     end
   end
 
@@ -50,6 +51,7 @@ RSpec.describe StatTracker do
   describe '#home_wins_array' do 
     it 'is a helper method for percentage_home_wins, array of home goals greater than away goals' do 
       expect(@stat_tracker.home_wins_array.class).to eq(Array)
+      expect(@stat_tracker.home_wins_array.count).to eq(16)
     end
   end
   
@@ -62,6 +64,7 @@ RSpec.describe StatTracker do
   describe '#visitor_wins_array' do 
     it 'returns array of games visitors have won' do 
       expect(@stat_tracker.visitor_wins_array.class).to eq(Array)
+      expect(@stat_tracker.visitor_wins_array.count).to eq(8)
     end
   end
 
@@ -74,6 +77,7 @@ RSpec.describe StatTracker do
   describe '#ties_array' do 
     it 'returns an array of games that have resulted in a tie' do 
       expect(@stat_tracker.ties_array.class).to eq(Array)
+      expect(@stat_tracker.ties_array.count).to eq(6)
     end
   end
    
@@ -122,6 +126,7 @@ RSpec.describe StatTracker do
   describe '#average_goals_by_team_hash' do 
     it 'is a helper method to group the teams to their average goals' do 
       expect(@stat_tracker.average_goals_by_team_hash.class).to eq(Hash)
+      expect(@stat_tracker.average_goals_by_team_hash.count).to eq(7)
     end
   end
 
@@ -170,12 +175,14 @@ RSpec.describe StatTracker do
   describe '#games_by_season' do 
     it 'is a helper method that groups the games by the season' do 
       expect(@stat_tracker.games_by_season.class).to eq(Hash)
+      expect(@stat_tracker.games_by_season.count).to eq(2)
     end
   end
 
   describe '#games_by_game_id' do 
     it 'is a helper method that groups the games by the game_id' do 
       expect(@stat_tracker.games_by_game_id.class).to eq(Hash)
+      expect(@stat_tracker.games_by_game_id.count).to eq(20)
     end
   end
 
