@@ -326,4 +326,35 @@ RSpec.describe StatTracker do
      expect(@stat_tracker.worst_season("6")).to eq("20122013")
    end
  end
+
+ xdescribe '#average_win_percentage' do 
+  it ' is the average win percentage for the team' do 
+    expect(@stat_tracker.average_win_percentage("6")).to eq("")
+  end
+ end
+
+ describe '#favorite_opponent' do 
+  it 'is the name of the team that has lowest win percentage against given team' do 
+    expect(@stat_tracker.favorite_opponent("16")).to eq("Toronto FC")
+  end
+ end
+
+ xdescribe '#average_win_percentage_all_teams' do 
+  it 'pairs all team with their average win percentage' do 
+    expect(@stat_tracker.average_win_percentage_all_teams("5")).to eq("")
+  end
+ end
+
+ describe '#zip_home_away_teams' do 
+  it 'zips the home and away team ids' do 
+    expect(@stat_tracker.zip_home_away_teams.class).to eq(Array)
+    expect(@stat_tracker.zip_home_away_teams.count).to eq(30)
+  end
+ end
+
+ describe '#rival' do 
+  it '...help' do 
+    expect(@stat_tracker.rival("16")).to eq("New York Red Bulls")
+  end
+ end
 end
