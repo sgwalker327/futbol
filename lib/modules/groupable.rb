@@ -28,4 +28,14 @@ module Groupable
       row[:team_id]
     end
   end
+
+  def get_ratios_by_season_id(season_id)
+    merged_hash = team_shots_by_season(season_id).merge(team_goals_by_season(season_id)) {|key, old_val, new_val| new_val.sum / old_val.sum.to_f}
+  end
+
+  def game_ids_by_season(season_id) 
+    games_by_season[season_id].map do |games|
+      games[:game_id]
+    end
+  end
 end

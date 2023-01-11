@@ -166,12 +166,12 @@ RSpec.describe StatTracker do
   describe '#team_info' do 
     it 'is team info' do 
       expected = {
-        'team_id'=>'6', 
-        'franchise_id'=>'6',
-        'team_name'=>'FC Dallas', 
-        'abbreviation'=>'DAL',
-        'link'=>'/api/v1/teams/6'
-      }
+                    'team_id'=>'6', 
+                    'franchise_id'=>'6',
+                    'team_name'=>'FC Dallas', 
+                    'abbreviation'=>'DAL',
+                    'link'=>'/api/v1/teams/6'
+                  }
 
       expect(@stat_tracker.team_info('6')).to eq(expected)
     end
@@ -186,12 +186,12 @@ RSpec.describe StatTracker do
   describe '#team_info' do
    it 'is team info' do
      expected = {
-       'team_id'=>'6',
-       'franchise_id'=>'6',
-       'team_name'=>'FC Dallas',
-       'abbreviation'=>'DAL',
-       'link'=>'/api/v1/teams/6'
-     }
+                  'team_id'=>'6',
+                  'franchise_id'=>'6',
+                  'team_name'=>'FC Dallas',
+                  'abbreviation'=>'DAL',
+                  'link'=>'/api/v1/teams/6'
+                }
  
      expect(@stat_tracker.team_info('6')).to eq(expected)
    end
