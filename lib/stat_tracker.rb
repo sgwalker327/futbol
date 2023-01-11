@@ -1,7 +1,4 @@
-require 'csv'
-require_relative 'game_teams'
-require_relative 'game'
-require_relative 'team'
+require 'spec_helper'
 
 class StatTracker
   attr_reader :game_path,
