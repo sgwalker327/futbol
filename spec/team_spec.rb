@@ -91,30 +91,6 @@ RSpec.describe Team do
     end
   end
 
-  describe '#highest_scoring_visitor' do 
-    it 'returns a string of the highest scoring away team name' do 
-      expect(@team.highest_scoring_visitor).to eq('FC Dallas')
-    end
-  end
-
-  describe '#lowest_scoring_visitor' do 
-    it 'returns a string of the lowest scoring away team name' do 
-      expect(@team.lowest_scoring_visitor).to eq('Sporting Kansas City')
-    end
-  end
-
-   describe '#highest_scoring_home_team' do
-    it 'returns a string of the highest scoring home team' do 
-      expect(@team.highest_scoring_home_team).to eq('New York City FC')
-    end
-  end
-
-  describe '#lowest_scoring_home_team' do
-    it 'returns a string of the lowest scoring home team' do 
-      expect(@team.lowest_scoring_home_team).to eq('Sporting Kansas City')
-    end
-  end
-
    describe '#games_by_season' do 
     it 'is a helper method that groups the games by the season' do 
       expect(@team.games_by_season.class).to eq(Hash)
@@ -135,24 +111,12 @@ RSpec.describe Team do
     end
   end
 
-describe '#most_tackles' do 
-  it 'is the team with the most tackles in the season' do 
-    expect(@team.most_tackles('20122013')).to eq('FC Dallas')
+  describe '#teams_with_tackles' do 
+    it 'is a helper method to set team ids to their array of tackles' do 
+      expect(@team.teams_with_tackles([]).class).to eq(Hash)
+      expect(@team.teams_with_tackles([]).count).to eq(0)
+    end
   end
-end
-
-describe '#fewest_tackles' do 
-  it 'is the team with the fewest tackles' do 
-    expect(@team.fewest_tackles('20122013')).to eq('New England Revolution')
-  end
-end 
-
-describe '#teams_with_tackles' do 
-  it 'is a helper method to set team ids to their array of tackles' do 
-    expect(@team.teams_with_tackles([]).class).to eq(Hash)
-    expect(@team.teams_with_tackles([]).count).to eq(0)
-  end
-end
 
   describe '#team_shots_by_season' do
     it 'gives the total team shots by season' do
@@ -221,6 +185,7 @@ end
       expect(@team.team_info('6')).to eq(expected)
     end
   end
+  
   describe '#games_by_team_id' do 
     it 'returns a hash with the game id as the key with games as values' do 
       expect(@team.games_by_team_id.class).to eq(Hash)

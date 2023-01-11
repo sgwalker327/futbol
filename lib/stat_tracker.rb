@@ -91,11 +91,11 @@ class StatTracker
   end
 
   def most_accurate_team(season_id) 
-    @game_teams.most_accurate_team(season_id)
+    @team.most_accurate_team(season_id)
   end
 
   def least_accurate_team(season_id) 
-    @game_teams.least_accurate_team(season_id)
+    @team.least_accurate_team(season_id)
   end
 
   def most_tackles(season_id) 

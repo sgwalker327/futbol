@@ -34,12 +34,6 @@ class Game
     (visitor_wins.to_f / @game_path.count).round(2)
   end
 
-	# def ties_array #helper
-	# 	@game_path.find_all do |row|
-	# 		row[:away_goals].to_i == row[:home_goals].to_i
-	# 	end
-	# end
-
 	def percentage_ties  
 		ties = ties_array.count
 		(ties.to_f / @game_path.count).round(2)

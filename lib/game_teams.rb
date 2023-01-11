@@ -77,22 +77,6 @@ class GameTeams
     all_scores_by_team[team_id.to_s].min
   end
 
-  def most_accurate_team(season_id) 
-    most_good = get_ratios_by_season_id(season_id).max_by{|k,v| v}
-    winner = @team_path.find do |row| 
-      row[:team_id] == most_good[0]
-    end
-    winner = winner[:teamname]
-  end
-
-  def least_accurate_team(season_id) 
-    least_good = get_ratios_by_season_id(season_id).min_by{|k,v| v}
-    loser = @team_path.find do |row| 
-      row[:team_id] == least_good[0]
-    end
-    loser = loser[:teamname]
-  end
-
   def best_season(team_id) 
     best_season_hash = {}
     best = pair_season_with_results_by_team(team_id)

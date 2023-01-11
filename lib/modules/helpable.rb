@@ -40,15 +40,15 @@ module Helpable
     average_goals_per_team
   end 
 
-   def teams_with_tackles(games_array) #??
-    hash = Hash.new{|k,v| k[v] = []}
-    games_array.each do |game_id|
-    next if games_by_game_id[game_id].nil?
-      games_by_game_id[game_id].each do |game|
-        hash[game[:team_id]] << game[:tackles].to_i
-      end
+  def teams_with_tackles(games_array) 
+  hash = Hash.new{|k,v| k[v] = []}
+  games_array.each do |game_id|
+  next if games_by_game_id[game_id].nil?
+    games_by_game_id[game_id].each do |game|
+      hash[game[:team_id]] << game[:tackles].to_i
     end
-      hash
+  end
+    hash
   end
 
   def team_shots_by_season(season_id) 
@@ -93,7 +93,7 @@ module Helpable
     team_info_hash  
   end
 
-  def wins_by_coach(game_id_array) #HELPER for winningest and worst coach
+  def wins_by_coach(game_id_array) 
     hash = Hash.new{|k, v| k[v] = []}
     game_id_array.each do |game_id|
       next if games_by_game_id[game_id].nil?
@@ -104,7 +104,7 @@ module Helpable
     hash 
   end
   
-def pair_season_with_results_by_team(team_id) #helper for best / worst season
+def pair_season_with_results_by_team(team_id) 
     hash = Hash.new{|k,v| k[v] = []}
     pair_teams_with_results(team_id).each do |team, results|
       results.each do |result|
@@ -146,7 +146,7 @@ def pair_season_with_results_by_team(team_id) #helper for best / worst season
   end
 
   def visitor_wins_array 
-    @game_path.find_all do |row|
+    @visitor_wins_array ||= @game_path.find_all do |row|
         row[:away_goals].to_i > row[:home_goals].to_i
     end
   end
@@ -159,7 +159,7 @@ def pair_season_with_results_by_team(team_id) #helper for best / worst season
 	end
 
   	def ties_array 
-		@game_path.find_all do |row|
+		@ties_array ||= @game_path.find_all do |row|
 			row[:away_goals].to_i == row[:home_goals].to_i
 		end
 	end
