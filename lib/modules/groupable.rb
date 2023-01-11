@@ -12,7 +12,7 @@ module Groupable
   end
 
    def teams_by_id
-    @game_teams_path.group_by do |row|
+    @teams_by_id ||= @game_teams_path.group_by do |row|
       row[:team_id]
     end
   end
@@ -23,7 +23,7 @@ module Groupable
     end
   end
 
-  def games_by_team_id # TEAM Class
+  def games_by_team_id 
     @games_by_team_id ||= @game_teams_path.group_by do |row|
       row[:team_id]
     end
@@ -37,5 +37,17 @@ module Groupable
     games_by_season[season_id].map do |games|
       games[:game_id]
     end
+  end
+
+  def all_scores_by_team 
+    hash = Hash.new{|k,v| k[v] = []}
+    @game_teams_path.each { |row| hash[row[:team_id]] << row[:goals].to_i }
+    hash
+  end
+
+ def team_name_by_team_id(team_id)
+    @team_path.find do |team|
+      team[:team_id] == team_id
+    end[:teamname]
   end
 end

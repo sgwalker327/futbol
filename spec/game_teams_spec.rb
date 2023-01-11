@@ -143,18 +143,6 @@ RSpec.describe GameTeams do
     end
   end
 
-  describe '#most_accurate_teams' do 
-    it 'is the team that is the most accurate' do 
-      expect(@game_teams.most_accurate_team('20122013')).to eq('FC Dallas')
-    end
-  end
-
-  describe '#least_accurate_teams' do
-    it 'is the team that is the least accurate' do
-      expect(@game_teams.least_accurate_team('20122013')).to eq('Sporting Kansas City')
-    end
-  end
-
   describe '#team_shots_by_season' do
     it 'gives the total team shots by season' do
       expect(@game_teams.team_shots_by_season('20122013').class).to eq(Hash)
