@@ -1,4 +1,4 @@
-require 'csv'
+require 'spec_helper'
 require_relative 'modules/helpable'
 require_relative 'modules/groupable'
 
