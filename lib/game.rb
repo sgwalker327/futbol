@@ -1,6 +1,9 @@
 require 'csv'
 
 class Game 
+  include Helpable
+  include Groupable
+
    attr_reader :game_path 
 
   def initialize(file_path)
@@ -21,44 +24,25 @@ class Game
     all_scores.min
   end
 
-  def home_wins_array 
-    @game_path.find_all do |row|
-     row[:home_goals].to_i > row[:away_goals].to_i
-    end
-  end
-
   def percentage_home_wins 
     wins = home_wins_array.count
     (wins.to_f / @game_path.count).round(2)
   end
 
-  def visitor_wins_array 
-    @game_path.find_all do |row|
-        row[:away_goals].to_i > row[:home_goals].to_i
-    end
-  end
-
-  def percentage_visitor_wins 
+  def percentage_visitor_wins  
     visitor_wins = visitor_wins_array.count
     (visitor_wins.to_f / @game_path.count).round(2)
   end
 
-	def ties_array 
-		@game_path.find_all do |row|
-			row[:away_goals].to_i == row[:home_goals].to_i
-		end
-	end
+	# def ties_array #helper
+	# 	@game_path.find_all do |row|
+	# 		row[:away_goals].to_i == row[:home_goals].to_i
+	# 	end
+	# end
 
-	def percentage_ties 
+	def percentage_ties  
 		ties = ties_array.count
 		(ties.to_f / @game_path.count).round(2)
-	end
-
-	def count_of_games_by_season 
-		season_id = @game_path.group_by { |row| row[:season] }
-		season_id.each do |season, game|
-			season_id[season] = game.count
-		end
 	end
    
   def average_goals_per_game 
