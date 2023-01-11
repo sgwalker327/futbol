@@ -15,8 +15,10 @@ RSpec.describe StatTracker do
     @stat_tracker = StatTracker.from_csv(locations)
   end
  
-  it 'exists' do 
-   expect(@stat_tracker).to be_an_instance_of(StatTracker)
+  describe '#initialization' do
+    it 'exists' do
+      expect(@stat_tracker).to be_an_instance_of(StatTracker)
+    end
   end
 
   describe '#highest_total_score' do 
@@ -26,7 +28,7 @@ RSpec.describe StatTracker do
   end
 
   describe '#lowest_total_score' do 
-    it ' is the lowest sum of the wining and losing teams scores' do 
+    it 'is the lowest sum of the wining and losing teams scores' do 
       expect(@stat_tracker.lowest_total_score).to eq(1)
     end
   end
@@ -68,8 +70,7 @@ RSpec.describe StatTracker do
   describe '#average_goals_by_season' do
     it 'finds the average goals per game per season' do
       expect(@stat_tracker.average_goals_by_season.class).to eq(Hash)
-      expect(@stat_tracker.average_goals_by_season).to eq(
-        {'20122013'=>4.05, '20132014'=>3.88} )
+      expect(@stat_tracker.average_goals_by_season).to eq( {'20122013'=>4.05, '20132014'=>3.88} )
     end
   end
 
@@ -166,13 +167,12 @@ RSpec.describe StatTracker do
   describe '#team_info' do 
     it 'is team info' do 
       expected = {
-                    'team_id'=>'6', 
-                    'franchise_id'=>'6',
-                    'team_name'=>'FC Dallas', 
-                    'abbreviation'=>'DAL',
-                    'link'=>'/api/v1/teams/6'
-                  }
-
+              'team_id'=>'6', 
+              'franchise_id'=>'6',
+              'team_name'=>'FC Dallas', 
+              'abbreviation'=>'DAL',
+              'link'=>'/api/v1/teams/6'
+              }
       expect(@stat_tracker.team_info('6')).to eq(expected)
     end
   end
@@ -184,32 +184,31 @@ RSpec.describe StatTracker do
   end
 
   describe '#team_info' do
-   it 'is team info' do
+    it 'is team info' do
      expected = {
-                  'team_id'=>'6',
-                  'franchise_id'=>'6',
-                  'team_name'=>'FC Dallas',
-                  'abbreviation'=>'DAL',
-                  'link'=>'/api/v1/teams/6'
-                }
- 
+              'team_id'=>'6',
+              'franchise_id'=>'6',
+              'team_name'=>'FC Dallas',
+              'abbreviation'=>'DAL',
+              'link'=>'/api/v1/teams/6'
+              }
      expect(@stat_tracker.team_info('6')).to eq(expected)
-   end
- end
+    end
+  end
  
- describe '#best_season' do
-   it 'is the best season for a team' do
-     expect(@stat_tracker.best_season('6')).to eq('20122013')
-   end
- end
+  describe '#best_season' do
+    it 'is the best season for a team' do
+      expect(@stat_tracker.best_season('6')).to eq('20122013')
+    end
+  end
 
- describe '#worst_season' do
-   it 'is the best season for a team' do
-     expect(@stat_tracker.worst_season('6')).to eq('20122013')
-   end
- end
+  describe '#worst_season' do
+    it 'is the best season for a team' do
+      expect(@stat_tracker.worst_season('6')).to eq('20122013')
+    end
+  end
  
- describe '#average_win_percentage' do 
+  describe '#average_win_percentage' do 
     it 'returns average win  percentage of all games for a team' do
       expect(@stat_tracker.average_win_percentage('6')).to eq(1.0)
     end
@@ -217,13 +216,13 @@ RSpec.describe StatTracker do
 
   describe '#favorite_opponent' do
     it 'is the name of the team that has lowest win percentage against given team' do
-      expect(@stat_tracker.favorite_opponent("3")).to eq("FC Dallas")
+      expect(@stat_tracker.favorite_opponent('3')).to eq('FC Dallas')
     end
   end
 
   describe '#rival' do
     it 'is the name of the team that has highest win percentage against given team' do
-      expect(@stat_tracker.favorite_opponent("3")).to eq("FC Dallas")
+      expect(@stat_tracker.rival('3')).to eq('FC Dallas')
     end
   end
 end

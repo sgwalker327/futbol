@@ -77,7 +77,7 @@ RSpec.describe GameTeams do
   end
   
   describe '#games_by_game_id' do 
-  it 'is a helper method that groups the games by the game_id' do 
+    it 'is a helper method that groups the games by the game_id' do 
       expect(@game_teams.games_by_game_id.class).to eq(Hash)
       expect(@game_teams.games_by_game_id.count).to eq(20)
     end

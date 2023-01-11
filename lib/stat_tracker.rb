@@ -7,7 +7,6 @@ class StatTracker
   attr_reader :game_path,
               :team_path,
               :game_teams_path
-              :game
        
   def initialize(locations)
     @game_path = CSV.read(locations[:games], headers: true, skip_blanks: true, header_converters: :symbol)
