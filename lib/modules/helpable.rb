@@ -41,13 +41,13 @@ module Helpable
   end 
 
   def teams_with_tackles(games_array) 
-  hash = Hash.new{|k,v| k[v] = []}
-  games_array.each do |game_id|
-  next if games_by_game_id[game_id].nil?
-    games_by_game_id[game_id].each do |game|
-      hash[game[:team_id]] << game[:tackles].to_i
-    end
-  end
+    hash = Hash.new{|k,v| k[v] = []}
+    games_array.each do |game_id|
+      next if games_by_game_id[game_id].nil?
+        games_by_game_id[game_id].each do |game|
+          hash[game[:team_id]] << game[:tackles].to_i
+        end
+      end
     hash
   end
 
@@ -57,10 +57,10 @@ module Helpable
         games_by_game_id.each do |id, game| 
           if id == game_id 
             game.each do |row|
-          hash[row[:team_id]] << row[:shots].to_i
+              hash[row[:team_id]] << row[:shots].to_i
+            end
           end
         end
-      end
     end
     hash
   end
@@ -71,17 +71,17 @@ module Helpable
         games_by_game_id.each do |id, game| 
           if id == game_id 
             game.each do |row|
-          hash[row[:team_id]] << row[:goals].to_i
+              hash[row[:team_id]] << row[:goals].to_i
+            end
           end
         end
-      end
     end
     hash
   end
 
   def team_info_hash(team_id)
-  team_info_hash = Hash.new
-  @team_path.map do |row|
+    team_info_hash = Hash.new
+    @team_path.map do |row|
       if team_id == row[:team_id]
         team_info_hash["team_id"] = row[:team_id]
         team_info_hash["franchise_id"] = row[:franchiseid]
@@ -104,11 +104,11 @@ module Helpable
     hash 
   end
   
-def pair_season_with_results_by_team(team_id) 
+  def pair_season_with_results_by_team(team_id) 
     hash = Hash.new{|k,v| k[v] = []}
     pair_teams_with_results(team_id).each do |team, results|
       results.each do |result|
-      data = games_by_id_game_path[result[1]][0]
+        data = games_by_id_game_path[result[1]][0]
         hash[data[:season]] << result[0]
       end
     end
@@ -125,23 +125,22 @@ def pair_season_with_results_by_team(team_id)
       hash[team_id] = value.each_slice(2).to_a
     end
     hash
-   end
+  end
 
-    def win_average_helper(team_id)
+  def win_average_helper(team_id)
     opponents_games = games_by_team_id[team_id].flat_map do |game|
       games_by_game_id[game[:game_id]].select { |element| element[:team_id]!= team_id }
     end
     results_hash = opponents_games.group_by {|game| game[:team_id] }
-      results_hash.map do |team, games|
-        game_result =  games.find_all {|game| game[:result] == 'WIN'}
-        
-        [((game_result.count.to_f / games.count) * 100).round(2), team]
-      end
+    results_hash.map do |team, games|
+      game_result =  games.find_all {|game| game[:result] == 'WIN'}
+      [((game_result.count.to_f / games.count) * 100).round(2), team]
+    end
   end
 
   def home_wins_array 
     @game_path.find_all do |row|
-     row[:home_goals].to_i > row[:away_goals].to_i
+      row[:home_goals].to_i > row[:away_goals].to_i
     end
   end
 
@@ -158,7 +157,7 @@ def pair_season_with_results_by_team(team_id)
 		end
 	end
 
-  	def ties_array 
+  def ties_array 
 		@ties_array ||= @game_path.find_all do |row|
 			row[:away_goals].to_i == row[:home_goals].to_i
 		end

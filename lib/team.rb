@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'csv'
 require_relative 'modules/helpable'
 require_relative 'modules/groupable'
 
@@ -49,8 +49,8 @@ class Team
   end
 
   def favorite_opponent(team_id)
-   opponent_id = win_average_helper(team_id).min.last
-   team_name_by_team_id(opponent_id)
+    opponent_id = win_average_helper(team_id).min.last
+    team_name_by_team_id(opponent_id)
   end
 
   def rival(team_id)

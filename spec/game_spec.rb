@@ -8,8 +8,9 @@ RSpec.describe Game do
     locations = {
       games: game_path
     }
+
     @game_path = CSV.read(locations[:games], headers: true, skip_blanks: true, header_converters: :symbol)
-    @game = Game.new(@game_path) 
+    @game = Game.new(@game_path)
   end
 
   describe '#all_scores' do 
@@ -55,7 +56,6 @@ RSpec.describe Game do
       expect(@game.visitor_wins_array.class).to eq(Array)
       expect(@game.visitor_wins_array.count).to eq(8)
       expect(@game.visitor_wins_array[0]).to include(:game_id)
-
     end
   end
 
@@ -73,7 +73,7 @@ RSpec.describe Game do
     end
   end
 
-    describe '#count_of_games_by_season' do 
+  describe '#count_of_games_by_season' do 
     it 'returns a hash with season names as keys and counts of games as values' do 
       expected = {
         '20122013' => 22,
@@ -89,14 +89,12 @@ RSpec.describe Game do
     end
   end
 
-   describe '#average_goals_by_season' do
+  describe '#average_goals_by_season' do
     it 'finds the average goals per game per season' do
       expect(@game.average_goals_by_season.class).to eq(Hash)
-      expect(@game.average_goals_by_season).to eq(
-        {'20122013'=>4.05, '20132014'=>3.88} )
+      expect(@game.average_goals_by_season).to eq( {'20122013'=>4.05, '20132014'=>3.88} )
     end
-  end
-   
+  end  
 end
 
   

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'csv'
 require_relative 'modules/helpable'
 require_relative 'modules/groupable'
 
@@ -48,8 +48,9 @@ class Game
   def average_goals_by_season 
     games_group_by_season = @game_path.group_by { |row| row[:season] }
     average_season_goals = {}
+
     games_group_by_season.each do |season, games|
-     total_goals = games.sum do |game|
+      total_goals = games.sum do |game|
         game[:away_goals].to_i + game[:home_goals].to_i
       end
       average_season_goals[season] = (total_goals / games.count.to_f).round(2)

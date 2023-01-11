@@ -1,5 +1,5 @@
 module Groupable 
-    def games_by_game_id
+  def games_by_game_id
     @games_by_game_id ||= @game_teams_path.group_by do |row| 
       row[:game_id]
     end
@@ -11,7 +11,7 @@ module Groupable
     end
   end
 
-   def teams_by_id
+  def teams_by_id
     @teams_by_id ||= @game_teams_path.group_by do |row|
       row[:team_id]
     end

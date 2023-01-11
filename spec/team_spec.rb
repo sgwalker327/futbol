@@ -34,14 +34,14 @@ RSpec.describe Team do
   describe '#average_goals_by_team_hash' do 
     it 'is a helper method to group the teams to their average goals' do 
       expected = {
-                  '3'=>1.6, 
-                  '6'=>2.67, 
-                  '5'=>0.5, 
-                  '17'=>1.86, 
-                  '16'=>1.43, 
-                  '9'=>2.5, 
-                  '8'=>2.0
-                }
+              '3'=>1.6, 
+              '6'=>2.67, 
+              '5'=>0.5, 
+              '17'=>1.86, 
+              '16'=>1.43, 
+              '9'=>2.5, 
+              '8'=>2.0
+              }
       expect(@team.average_goals_by_team_hash).to eq(expected)
       expect(@team.average_goals_by_team_hash).to be_a(Hash)
     end
@@ -62,14 +62,14 @@ RSpec.describe Team do
   describe '#home_scores_hash' do 
     it 'returns a hash of the average home goals per team' do 
       expected = {
-                  '3'=>0.6, 
-                  '6'=>1.33, 
-                  '5'=>0.25, 
-                  '17'=>1.14, 
-                  '16'=>1.0, 
-                  '9'=>1.75, 
-                  '8'=>1.25
-                }
+              '3'=>0.6, 
+              '6'=>1.33, 
+              '5'=>0.25, 
+              '17'=>1.14, 
+              '16'=>1.0, 
+              '9'=>1.75, 
+              '8'=>1.25
+              }
       expect(@team.home_scores_hash).to be_a(Hash)
       expect(@team.home_scores_hash).to eq(expected)
     end
@@ -78,20 +78,20 @@ RSpec.describe Team do
   describe '#visitor_scores_hash' do 
     it 'returns a hash of the average visitor goals per team' do 
       expected = {
-                  '3'=>1.0, 
-                  '6'=>1.33, 
-                  '5'=>0.25, 
-                  '17'=>0.71, 
-                  '16'=>0.43, 
-                  '9'=>0.75, 
-                  '8'=>0.75
-                }
+              '3'=>1.0, 
+              '6'=>1.33, 
+              '5'=>0.25, 
+              '17'=>0.71, 
+              '16'=>0.43, 
+              '9'=>0.75, 
+              '8'=>0.75
+              }
       expect(@team.visitor_scores_hash).to be_a(Hash)
       expect(@team.visitor_scores_hash).to eq(expected)
     end
   end
 
-   describe '#games_by_season' do 
+  describe '#games_by_season' do 
     it 'is a helper method that groups the games by the season' do 
       expect(@team.games_by_season.class).to eq(Hash)
     end
@@ -105,9 +105,14 @@ RSpec.describe Team do
 
   describe '#game_ids_by_season' do 
     it 'is a helper method that groups game ids to the give season' do
-       expected = ['2012030221', '2012030222', '2012030223', '2012030224', '2012030225', '2012030311', '2012030312','2012030313', '2012030314', '2012030231', '2012030232', '2012030233', '2012030234', '2012030235', '2012030236', '2012020225', '2012020577', '2012020122', '2012020387','2012020510', '2012020511', '2012020116']
-      expect(@team.game_ids_by_season('20122013')).to be_a(Array)
+      expected = ["2012030221", "2012030222", "2012030223", "2012030224", "2012030225", 
+                  "2012030311", "2012030312", "2012030313", "2012030314", "2012030231", 
+                  "2012030232", "2012030233", "2012030234", "2012030235", "2012030236",
+                  "2012020225", "2012020577", "2012020122", "2012020387", "2012020510", 
+                  "2012020511", "2012020116"]
       expect(@team.game_ids_by_season('20122013')).to eq(expected)
+      expect(@team.game_ids_by_season('20122013').class).to eq(Array)
+      expect(@team.game_ids_by_season('20122013').count).to eq(22)
     end
   end
 
@@ -121,12 +126,12 @@ RSpec.describe Team do
   describe '#team_shots_by_season' do
     it 'gives the total team shots by season' do
       expected = {
-                  '3'=>[8, 9, 6, 8, 7], 
-                  '6'=>[12, 8, 8, 10, 8, 7, 7, 10, 6], 
-                  '5'=>[7, 6, 13, 6], 
-                  '17'=>[5, 7, 7, 6, 6, 9], 
-                  '16'=>[10, 5, 10, 7, 11, 7]
-                }
+              '3'=>[8, 9, 6, 8, 7], 
+              '6'=>[12, 8, 8, 10, 8, 7, 7, 10, 6], 
+              '5'=>[7, 6, 13, 6], 
+              '17'=>[5, 7, 7, 6, 6, 9], 
+              '16'=>[10, 5, 10, 7, 11, 7]
+              }
       expect(@team.team_shots_by_season('20122013')).to be_a(Hash)
       expect(@team.team_shots_by_season('20122013')).to eq(expected)
     end
@@ -135,18 +140,18 @@ RSpec.describe Team do
   describe '#get_ratios_by_season_id' do 
     it 'gets the ratios by the team' do
        expected = {
-                    '3'=>0.21052631578947367, 
-                    '6'=>0.3157894736842105, 
-                    '5'=>0.0625, 
-                    '17'=>0.3, 
-                    '16'=>0.16
-                  }
+              '3'=>0.21052631578947367, 
+              '6'=>0.3157894736842105, 
+              '5'=>0.0625, 
+              '17'=>0.3, 
+              '16'=>0.16
+              }
       expect(@team.get_ratios_by_season_id('20122013')).to be_a(Hash)
       expect(@team.get_ratios_by_season_id('20122013')).to eq(expected)
     end
   end
 
-    describe '#most_accurate_team' do 
+  describe '#most_accurate_team' do 
     it 'is the team that is the most accurate' do 
       expect(@team.most_accurate_team('20122013')).to eq('FC Dallas')
     end
@@ -158,15 +163,15 @@ RSpec.describe Team do
     end
   end
 
-   describe '#team_goals_by_season' do
+  describe '#team_goals_by_season' do
     it 'gives the total team goals by season' do
       expected = {
-                  '3'=>[2, 2, 1, 2, 1], 
-                  '6'=>[3, 3, 2, 3, 3, 3, 4, 2, 1], 
-                  '5'=>[0, 1, 1, 0], 
-                  '17'=>[1, 2, 3, 2, 1, 3], 
-                  '16'=>[2, 1, 1, 0, 2, 2]
-                }
+              '3'=>[2, 2, 1, 2, 1], 
+              '6'=>[3, 3, 2, 3, 3, 3, 4, 2, 1], 
+              '5'=>[0, 1, 1, 0], 
+              '17'=>[1, 2, 3, 2, 1, 3], 
+              '16'=>[2, 1, 1, 0, 2, 2]
+              }
       expect(@team.team_goals_by_season('20122013')).to be_a(Hash)
       expect(@team.team_goals_by_season('20122013')).to eq(expected)
     end
@@ -175,13 +180,12 @@ RSpec.describe Team do
   describe '#team_info' do 
     it 'is team info' do 
       expected = {
-        'team_id'=>'6', 
-        'franchise_id'=>'6',
-        'team_name'=>'FC Dallas', 
-        'abbreviation'=>'DAL',
-        'link'=>'/api/v1/teams/6'
-      }
-
+          'team_id'=>'6', 
+          'franchise_id'=>'6',
+          'team_name'=>'FC Dallas', 
+          'abbreviation'=>'DAL',
+          'link'=>'/api/v1/teams/6'
+        }
       expect(@team.team_info('6')).to eq(expected)
     end
   end
@@ -200,21 +204,20 @@ RSpec.describe Team do
 
   describe '#win_average_helper' do 
     it 'returns an array'do 
-    expect(@team.win_average_helper('3')).to be_a(Array)
-    expect(@team.win_average_helper('3').count).to eq(1)
+      expect(@team.win_average_helper('3')).to be_a(Array)
+      expect(@team.win_average_helper('3').count).to eq(1)
     end
   end
 
-   describe '#favorite_opponent' do
+  describe '#favorite_opponent' do
     it 'is the name of the team that has lowest win percentage against given team' do
-      expect(@team.favorite_opponent("3")).to eq("FC Dallas")
+      expect(@team.favorite_opponent('3')).to eq('FC Dallas')
     end
   end
 
   describe '#rival' do
     it 'is the name of the team that has highest win percentage against given team' do
-      expect(@team.favorite_opponent("3")).to eq("FC Dallas")
+      expect(@team.rival('3')).to eq('FC Dallas')
     end
   end
-
 end

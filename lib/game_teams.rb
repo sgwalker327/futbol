@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'csv'
 require_relative 'modules/groupable'
 require_relative 'modules/helpable'
 
@@ -22,21 +22,21 @@ class GameTeams
 
   def lowest_scoring_visitor 
 		visitor_lowest = visitor_scores_hash.min_by {|k,v| v}
-		  @team_path.map do |team| 
+		@team_path.map do |team| 
         team[:teamname] if team[:team_id] == visitor_lowest[0]
     end.compact.pop
 	end
 
   def highest_scoring_home_team 
     home_highest = home_scores_hash.max_by { |k, v| v }
-      @team_path.map do |team|
+    @team_path.map do |team|
         team[:teamname] if team[:team_id] == home_highest[0]
     end.compact.pop
   end
 
   def lowest_scoring_home_team 
 		home_lowest = home_scores_hash.min_by {|k,v| v}
-		  @team_path.map do |team| 
+		@team_path.map do |team| 
         team[:teamname] if team[:team_id] == home_lowest[0]
     end.compact.pop
 	end
@@ -110,17 +110,17 @@ class GameTeams
 
   def winningest_coach(season_id) 
     coach_results = wins_by_coach(game_ids_by_season(season_id)) 
-     coach_results.each do |coach, results| 
+    coach_results.each do |coach, results| 
       coach_results[coach] = (results.count("WIN") / (results.count.to_f / 2))
-     end
-     coach_results.invert[coach_results.invert.keys.max]
+    end
+    coach_results.invert[coach_results.invert.keys.max]
   end
 
   def worst_coach(season_id) 
     coach_results = wins_by_coach(game_ids_by_season(season_id)) 
-     coach_results.each do |coach, results| 
+    coach_results.each do |coach, results| 
       coach_results[coach] = (results.count("WIN") / (results.count.to_f / 2))
-     end
-     coach_results.invert[coach_results.invert.keys.min]
+    end
+    coach_results.invert[coach_results.invert.keys.min]
   end
 end
