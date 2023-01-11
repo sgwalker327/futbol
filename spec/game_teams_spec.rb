@@ -70,19 +70,27 @@ RSpec.describe GameTeams do
   end
 
   describe '#games_by_season' do 
-    it 'is a helper method that groups the games by the season' do 
+    it 'is a helper method that groups the games by the season' do
       expect(@game_teams.games_by_season.class).to eq(Hash)
+      expect(@game_teams.games_by_season.count).to eq(2)
     end
   end
-
+  
   describe '#games_by_game_id' do 
-    it 'is a helper method that groups the games by the game_id' do 
+  it 'is a helper method that groups the games by the game_id' do 
       expect(@game_teams.games_by_game_id.class).to eq(Hash)
+      expect(@game_teams.games_by_game_id.count).to eq(20)
     end
   end
 
   describe '#game_ids_by_season' do 
-    it 'is a helper method that groups game ids to the give season' do 
+    it 'is a helper method that groups game ids to the give season' do
+      expected = ["2012030221", "2012030222", "2012030223", "2012030224", "2012030225", 
+                  "2012030311", "2012030312", "2012030313", "2012030314", "2012030231", 
+                  "2012030232", "2012030233", "2012030234", "2012030235", "2012030236",
+                  "2012020225", "2012020577", "2012020122", "2012020387", "2012020510", 
+                  "2012020511", "2012020116"]
+      expect(@game_teams.game_ids_by_season('20122013')).to eq(expected)
       expect(@game_teams.game_ids_by_season('20122013').class).to eq(Array)
       expect(@game_teams.game_ids_by_season('20122013').count).to eq(22)
     end
@@ -101,7 +109,7 @@ RSpec.describe GameTeams do
   end 
 
   describe '#teams_with_tackles' do 
-    it 'is a helper method to set team ids to their array of tackles' do 
+    it 'is a helper method to set team ids to their array of tackles' do
       expect(@game_teams.teams_with_tackles([]).class).to eq(Hash)
       expect(@game_teams.teams_with_tackles([]).count).to eq(0)
     end
@@ -128,7 +136,9 @@ RSpec.describe GameTeams do
   end
 
   describe '#get_ratios_by_season_id' do 
-    it 'gets the ratios by the season' do 
+    it 'gets the ratios by the season' do
+      expected = {"3"=>0.21052631578947367, "6"=>0.3157894736842105, "5"=>0.0625, "17"=>0.3, "16"=>0.16}
+      expect(@game_teams.get_ratios_by_season_id('20122013')).to eq(expected)
       expect(@game_teams.get_ratios_by_season_id('20122013').class).to eq(Hash)
     end
   end
@@ -141,7 +151,7 @@ RSpec.describe GameTeams do
 
   describe '#least_accurate_teams' do
     it 'is the team that is the least accurate' do
-      expect(@game_teams.most_accurate_team('20122013')).to eq('FC Dallas')
+      expect(@game_teams.least_accurate_team('20122013')).to eq('Sporting Kansas City')
     end
   end
 
